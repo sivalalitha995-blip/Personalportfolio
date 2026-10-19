@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h2 {
+            color: #60a5fa;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        section {
+            padding: 60px 10%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #172554, #2563eb);
+            color: white;
+            text-align: center;
+            padding: 100px 10%;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #60a5fa;
+            color: #172554;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #172554;
+        }
+
+        .about, .contact {
+            text-align: center;
+        }
+
+        .skills-container, .projects-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skill, .project {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #00000012;
+            flex: 1 1 220px;
+            max-width: 350px;
+        }
+
+        .skill {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .project h3 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .project a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>My Portfolio</h2>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Hi, I'm Sivalalitha</h1>
+        <p>B.E. Computer Science Engineering Student</p>
+        <p>Aspiring Software Developer | Technology Enthusiast</p>
+        <a href="#about" class="button">Explore My Portfolio</a>
+    </section>
+
+    <section class="about" id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a Computer Science Engineering student interested in
+            software development and cybersecurity. I enjoy learning
+            new technologies, solving problems, and building projects
+            that improve my technical skills. My goal is to become a
+            skilled software developer and contribute to meaningful
+            technology solutions.
+        </p>
+    </section>
+
+   <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">Java</div>
+        <div class="skill">Python</div>
+        <div class="skill">Cybersecurity</div>
+    </div>
+</section>
+
+
+        <h2 style="text-align:center;">My Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="project">
+                <h3>Personal Portfolio Website</h3>
+                <p>
+                    A responsive website showcasing my introduction,
+                    technical skills, and projects using HTML and CSS.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Phishing Investigation Lab</h3>
+                <p>
+                    An academic cybersecurity project focused on
+                    investigating suspicious websites and understanding
+                    phishing detection.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Task Management Application</h3>
+                <p>
+                    A project idea for organizing tasks, tracking progress,
+                    and managing daily activities.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+
+        <p>Email: sivalalitha995@gmail.com</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/siva-lalitha-a09419401/" target="_blank">Visit My LinkedIn</a></p>
+        <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+    <p id="status"></p>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    try {
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        document.getElementById("status").textContent =
+            response.ok ? result.success : result.error;
+
+        if (response.ok) {
+            document.getElementById("contactForm").reset();
+        }
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "Could not send message. Please try again.";
+    }
+});
+</script>
+        </section>
+
+    <footer>
+        <p>&copy; 2026 Sivalalitha | Personal Portfolio</p>
+    </footer>
+
+</body>
+</html>
